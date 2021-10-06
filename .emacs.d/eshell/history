@@ -1,0 +1,54 @@
+alias ff 'find-file $1'
+alias init 'ff ~/.emacs.d/init.el'
+init
+init
+init
+init
+init
+init
+init
+init
+init
+ls
+cd DOcuments
+ls
+cd ..
+cd Documents
+ls
+cd Programming
+ls
+rm -rf -d homebrew-core
+ls
+ls
+rm homebrew-core
+ls
+mkdir GitHub
+ls
+cd GitHub
+ls
+init
+init
+init
+init
+cd Downloads
+ls
+ff init.el
+init
+init
+init
+init
+cd ../Documents
+cd Programming/
+cd GitHub/
+ls
+gh repo clone 123456789x/dotfiles
+git clone github.com/123456789x/dotfiles
+git clone https://github.com/123456789x/dotfiles
+git clone https://github.com/123456789x/quicktools
+git clone https://github.com/123456789x/puzzlelab
+git clone https://github.com/123456789x/onlyemacs
+git clone https://github.com/123456789x/usaco-guide-solutions
+ls
+git --help
+git help -a
+gh
