@@ -51,10 +51,11 @@
   :ensure t
   :init (doom-modeline-mode 1))
 
-(setq doom-modeline-height 38)       ; Larger height for modeline
+(setq doom-modeline-height 45)       ; Larger height for modeline
 
 ;; Set PATH
 (setenv "PATH" "~/Documents/Belder/:/opt/local/bin:/opt/local/sbin:/usr/local/Cellar/ffmpeg/4.3.1_8/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/:/usr/local/Cellar/ffmpeg/4.3.1_4/bin :/usr/local/lib:/usr/local/share:/usr/local/Cellar/asymptote/2.70/bin :/Library/TeX/texbin:/usr/local/go/bin:/Library/Apple/usr/bin)")
+(setenv "PKG_CONFIG_PATH" "/usr/local/Cellar/zlib/1.2.8/lib/pkgconfig:/usr/local/lib/pkgconfig:/opt/X11/lib/pkgconfig")
 
 ;; ------------------- New Packages ------------------- ;;
 
@@ -63,8 +64,9 @@
 (setq ivy-use-virtual-buffers t)      ; Show recent files when switching buffers
 
 ;; General.el
-(require 'general)             ; Use general.el for keybindings
-(general-auto-unbind-keys)     ; Automatically unbind keys when necessary
+(use-package general             	; Use general.el for keybindings
+  :config      
+  (general-auto-unbind-keys))           ; Automatically unbind keys when necessary
 
 ;; Rainbow Delimiters
 (use-package rainbow-delimiters
@@ -90,6 +92,10 @@
 ;; EPeriodic
 (add-to-list 'load-path "~/.emacs.d/site-lisp")
 (require 'eperiodic)
+
+
+;; Org-Drill
+(use-package org-drill)
 
 
 
@@ -147,11 +153,14 @@
 			       "~/.plans/Plans/High Learning"
 			       )))
 
+;; set todo keywords
 (setq org-todo-keywords
       (quote ((sequence "TODO(t)" "NEXT(n)" "PROG(p)" "|" "DONE(d@)")
               (sequence "WAIT(w/!)" "|" "CANC(c@/!)"))))
 
 (setq org-todo-keyword-faces nil)
+
+(setq org-log-into-drawer t)
 
 (setq org-directory "~/.plans")
 (setq org-default-notes-file "~/.plans/refile.org")
@@ -174,7 +183,10 @@
 
 (add-hook 'org-clock-out-hook 'bh/remove-empty-drawer-on-clock-out 'append)
 
+;; Change UI for ellipsis
+(setq org-ellipsis " ▾")
 
+;; Change UI for stars
 (use-package org-superstar
   :after org
   :hook (org-mode . org-superstar-mode)
@@ -183,7 +195,7 @@
   (org-superstar-headline-bullets-list '("◉" "○" "●" "○" "●" "○" "●")))
 
 ;; Increase the size of various headings
-(set-face-attribute 'org-document-title nil :font "-*-Iosevka Aile-normal-normal-normal-*-*-*-*-*-p-0-iso10646-1" :weight 'bold :height 1.3)
+(set-face-attribute 'org-document-title nil :font "-*-Avenir-normal-normal-normal-*-12-*-*-*-p-0-iso10646-1" :weight 'bold :height 1.3)
 (dolist (face '((org-level-1 . 1.2)
                 (org-level-2 . 1.1)
                 (org-level-3 . 1.05)
@@ -192,7 +204,7 @@
                 (org-level-6 . 1.1)
                 (org-level-7 . 1.1)
                 (org-level-8 . 1.1)))
-  (set-face-attribute (car face) nil :font "-*-Iosevka Aile-normal-normal-normal-*-*-*-*-*-p-0-iso10646-1" :weight 'medium :height (cdr face)))
+  (set-face-attribute (car face) nil :font "-*-Avenir-normal-normal-normal-*-12-*-*-*-p-0-iso10646-1" :weight 'medium :height (cdr face)))
 
 ;; Make sure org-indent face is available
 (require 'org-indent)
@@ -243,5 +255,6 @@
   (not (member (nth 2 (org-heading-components)) org-done-keywords)))
 
 (setq org-refile-target-verify-function 'bh/verify-refile-target)
+
 
 ;; init.el ends here
