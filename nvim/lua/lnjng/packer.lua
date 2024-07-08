@@ -5,17 +5,12 @@ return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
+    use { "catppuccin/nvim", as = "catppuccin" }
+
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.2',
         -- or                            , branch = '0.1.x',
         requires = { {'nvim-lua/plenary.nvim'} }
-    }
-
-    use 'shaunsingh/nord.nvim'
-
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate'
     }
 
     use 'theprimeagen/harpoon'
@@ -24,20 +19,11 @@ return require('packer').startup(function(use)
 
     use 'tpope/vim-fugitive'
 
-    use {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v2.x',
-        requires = {
-            -- LSP Support
-            {'neovim/nvim-lspconfig'},             -- Required
-            {'williamboman/mason.nvim'},           -- Optional
-            {'williamboman/mason-lspconfig.nvim'}, -- Optional
+    use 'github/copilot.vim'
 
-            -- Autocompletion
-            {'hrsh7th/nvim-cmp'},     -- Required
-            {'hrsh7th/cmp-nvim-lsp'}, -- Required
-            {'L3MON4D3/LuaSnip'},     -- Required
-        }
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate'
     }
 
     use {
@@ -45,6 +31,19 @@ return require('packer').startup(function(use)
         requires = { 'nvim-tree/nvim-web-devicons', opt = true }
     }
 
-    use 'christoomey/vim-tmux-navigator'
+    use {
+        'VonHeikemen/lsp-zero.nvim',
+        branch = 'v3.x',
+        requires = {
+            --- Uncomment the two plugins below if you want to manage the language servers from neovim
+            {'williamboman/mason.nvim'},
+            {'williamboman/mason-lspconfig.nvim'},
+
+            {'neovim/nvim-lspconfig'},
+            {'hrsh7th/nvim-cmp'},
+            {'hrsh7th/cmp-nvim-lsp'},
+            {'L3MON4D3/LuaSnip'},
+        }
+    }
 
 end)
