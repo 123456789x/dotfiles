@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: sidenote
+# key: sidenote
+# --
+<label for="$1" class="margin-toggle sidenote-number"></label><input type="checkbox" id="$1" class="margin-toggle"/><span class="sidenote">$0</span>
