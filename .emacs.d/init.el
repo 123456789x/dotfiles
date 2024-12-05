@@ -30,6 +30,9 @@
 (setq treesit-language-source-alist
       '((rust "https://github.com/tree-sitter/tree-sitter-rust")))
 
+;; Backup folder
+(setq backup-directory-alist `(("~/.emacs.d/saves/")))
+
 ;; ------------------- Basic Package Setup ------------------- ;;
 
 ;; Setup Packages
@@ -105,11 +108,6 @@
   :ensure t
   :init
   (yas-global-mode 1))
-
-;; clipmon
-(use-package clipmon
-  :bind ("s-y" . clipmon-autoinsert-toggle)
-  :init (clipmon-mode))
 
 ;; hydra
 (use-package hydra
